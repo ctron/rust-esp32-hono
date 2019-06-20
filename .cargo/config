@@ -1,0 +1,89 @@
+[build]
+target = "xtensa-esp32-none-elf"
+
+[target.xtensa-esp32-none-elf]
+rustflags = [
+  "-C", "target-cpu=esp32",
+  "-C", "save-temps",
+  "-C", "link-arg=-nostdlib",
+#  "-C", "link-arg=-nostartfiles",
+
+  "-C", "link-arg=-ucall_user_start_cpu0",
+  "-C", "link-arg=-u__cxa_guard_dummy",
+  "-C", "link-arg=-u__cxx_fatal_exception",
+  "-C", "link-arg=-uld_include_panic_highint_hdl",
+  "-C", "link-arg=-uesp_app_desc",
+
+  "-C", "link-arg=-Wl,--gc-sections",
+  "-C", "link-arg=-Wl,-static",
+  "-C", "link-arg=-Wl,--start-group",
+
+  "-C", "link-arg=-Lbuild/app_update", "-C", "link-arg=-lapp_update",
+  "-C", "link-arg=-Lbuild/driver", "-C", "link-arg=-ldriver",
+  "-C", "link-arg=-Lbuild/esp-tls",  "-C", "link-arg=-lesp-tls",
+  "-C", "link-arg=esp-idf/components/esp32/libhal.a",
+
+  "-C", "link-arg=-Lesp-idf/components/esp32/ld",
+  "-C", "link-arg=-Tesp32_out.ld",
+  "-C", "link-arg=-Tbuild/esp32/esp32.project.ld",
+  "-C", "link-arg=-Tesp32.rom.ld",
+  "-C", "link-arg=-Tesp32.peripherals.ld",
+  "-C", "link-arg=-Tesp32.rom.libgcc.ld",
+  "-C", "link-arg=-Tesp32.rom.spiram_incompatible_fns.ld",
+
+  "-C", "link-arg=-Lbuild/esp_ringbuf", "-C", "link-arg=-lesp_ringbuf",
+  "-C", "link-arg=-Lbuild/esp_event", "-C", "link-arg=-lesp_event",
+  "-C", "link-arg=-Lbuild/efuse", "-C", "link-arg=-lefuse",
+  "-C", "link-arg=-Lbuild/freertos", "-C", "link-arg=-lfreertos",
+
+  "-C", "link-arg=-Wl,--undefined=uxTopUsedPriority",
+
+  "-C", "link-arg=-Lbuild/heap", "-C", "link-arg=-lheap",
+  "-C", "link-arg=-Lbuild/log", "-C", "link-arg=-llog",
+
+  "-C", "link-arg=esp-idf/components/newlib/lib/libc.a",
+  "-C", "link-arg=esp-idf/components/newlib/lib/libm.a",
+
+  "-C", "link-arg=-Lbuild/newlib", "-C", "link-arg=-lnewlib",
+  "-C", "link-arg=-Lbuild/pthread", "-C", "link-arg=-lpthread",
+  "-C", "link-arg=-Lbuild/soc", "-C", "link-arg=-lsoc",
+  "-C", "link-arg=-Lbuild/spi_flash", "-C", "link-arg=-lspi_flash",
+  "-C", "link-arg=-Lbuild/vfs", "-C", "link-arg=-lvfs",
+  
+  "-C", "link-arg=-Lbuild/esp_http_client", "-C", "link-arg=-lesp_http_client",
+  "-C", "link-arg=-Lbuild/esp-tls", "-C", "link-arg=-lesp-tls",
+  "-C", "link-arg=-Lbuild/mbedtls", "-C", "link-arg=-lmbedtls",
+  "-C", "link-arg=-Lbuild/tcp_transport", "-C", "link-arg=-ltcp_transport",
+  "-C", "link-arg=-Lbuild/lwip", "-C", "link-arg=-llwip",
+  "-C", "link-arg=-Lbuild/nghttp", "-C", "link-arg=-lnghttp",
+  "-C", "link-arg=-Lbuild/wpa_supplicant", "-C", "link-arg=-lwpa_supplicant",
+  "-C", "link-arg=-Lbuild/nvs_flash", "-C", "link-arg=-lnvs_flash",
+   
+  "-C", "link-arg=-Lbuild/tcpip_adapter", "-C", "link-arg=-ltcpip_adapter",
+  "-C", "link-arg=-Lbuild/tcp_transport", "-C", "link-arg=-ltcp_transport",
+  "-C", "link-arg=-Lbuild/wifi_provisioning", "-C", "link-arg=-lwifi_provisioning",
+    
+  "-C", "link-arg=-Lbuild/xtensa-debug-module", "-C", "link-arg=-lxtensa-debug-module",
+  
+  "-C", "link-arg=-Lbuild/smartconfig_ack", "-C", "link-arg=-lsmartconfig_ack",
+
+  "-C", "link-arg=-Lbuild/esp32",  "-C", "link-arg=-lesp32",
+
+  "-C", "link-arg=-Lesp-idf/components/esp32/lib", 
+  "-C", "link-arg=-lcore",
+  "-C", "link-arg=-lphy",
+  "-C", "link-arg=-lnet80211",
+  "-C", "link-arg=-lwps",
+  "-C", "link-arg=-lwpa",
+  "-C", "link-arg=-lwpa2",
+  "-C", "link-arg=-lpp",
+  "-C", "link-arg=-lcoexist",
+  "-C", "link-arg=-lrtc",
+  "-C", "link-arg=-lsmartconfig",
+
+  "-C", "link-arg=-lgcc",
+  "-C", "link-arg=-lstdc++",
+  "-C", "link-arg=-lgcov",
+  "-C", "link-arg=-Wl,--end-group",
+  "-C", "link-arg=-Wl,-EL",
+]

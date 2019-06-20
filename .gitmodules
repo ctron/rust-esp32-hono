@@ -1,0 +1,9 @@
+[submodule "cty"]
+	path = cty
+	url = git@github.com:ctron/cty.git
+[submodule "cstr_core"]
+	path = cstr_core
+	url = git@github.com:ctron/cstr_core.git
+[submodule "esp-idf-alloc"]
+	path = esp-idf-alloc
+	url = git@github.com:ctron/esp-idf-alloc.git

@@ -1,0 +1,12 @@
+target/
+build/
+Cargo.lock
+
+/sdkconfig.old
+esp-idf
+esp-app.bin
+
+.project
+.settings/
+
+.idea/

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -ex
+
+FLAGS=""
+FLAGS+=" --sysroot=/esp/xtensa-esp32-elf/xtensa-esp32-elf/sysroot"
+FLAGS+=" -I/build/build/include"
+FLAGS+=" -D__bindgen"
+FLAGS+=" -target xtensa"
+FLAGS+=" -x c"
+
+FLAGS+=" -I$IDF_PATH/components/newlib/platform_include"
+
+for i in $(find "$IDF_PATH/components" -name include); do
+	FLAGS+=" -I$i"
+done
+
+FLAGS+=" -I$IDF_PATH/components/lwip/include/apps"
+FLAGS+=" -I$IDF_PATH/components/lwip/lwip/src/include/lwip/apps"
+FLAGS+=" -I$IDF_PATH/components/esp-tls"
+
+: ${BINDGEN_FLAGS:="--use-core --no-layout-tests --ctypes-prefix cty --blacklist-type _reent"}
+
+bindgen $BINDGEN_FLAGS --output esp32-sys/src/bindings.rs esp32-sys/src/bindings.h -- $FLAGS
