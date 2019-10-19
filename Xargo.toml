@@ -1,5 +1,0 @@
-[target.xtensa-esp32-none-elf.dependencies]
-alloc={}
-
-[dependencies]
-compiler_builtins = { version = "=0.1.16" }

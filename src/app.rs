@@ -79,9 +79,6 @@ unsafe extern "C" fn event_handler(ctx: *mut cty::c_void, event: *mut system_eve
 
 const SNTP_SERVER_NAME: &'static [u8] = b"0.pool.ntp.org\0";
 
-
-// see: /esp-idf/examples/wifi/getting_started/station/main/station_example_main.c
-
 unsafe fn wifi_init_sta(app: &mut Application, ssid: &'static str, password: &'static str) {
     log::log(
         Level::INFO,
