@@ -1,6 +1,3 @@
-[submodule "cty"]
-	path = cty
-	url = git@github.com:ctron/cty.git
 [submodule "cstr_core"]
 	path = cstr_core
 	url = git@github.com:ctron/cstr_core.git

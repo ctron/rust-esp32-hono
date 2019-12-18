@@ -4,7 +4,6 @@ version = "0.1.0"
 edition = "2018"
 
 [patch.crates-io]
-cty = { path = "cty" }
 cstr_core = { path = "cstr_core" }
 
 # Use https://github.com/japaric/serde-json-core/pull/12
@@ -14,7 +13,7 @@ serde-json-core = { git = "https://github.com/ctron/serde-json-core", branch = "
 esp-idf-alloc = { path = "esp-idf-alloc" }
 esp32-sys = { path = "esp32-sys" }
 cstr_core = { version = "0.1.2", features = [ "alloc" ] }
-cty = "0.2.0"
+cty = "0.2.1"
 serde = { version = "1.0.99", default-features = false, features = ["derive"] }
 serde-json-core = "0.0.1"
 heapless = "0.4"
